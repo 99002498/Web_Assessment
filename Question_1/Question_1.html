@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+
+    <script src="./common.js"></script>
+    <script>
+     function clear(){
+            $("name").value="";
+            $("password").value="";
+            $("mail").value="";
+            $("phone").value="";
+            $("city").value=""; 
+            if (document.contains($("display")))
+            $("display").remove();
+        }
+        function add(){
+    	    var name=$("name").value;
+            var password=$("password").value;
+            var email=$("mail").value;
+            var phone=$("phone").value;
+            var city=$("city").value;
+    if (typeof(Storage) !== "undefined") {
+  localStorage.setItem("Name", name);
+  localStorage.setItem("Password", password);
+  localStorage.setItem("email", email);
+  localStorage.setItem("phone", phone);
+  localStorage.setItem("city", city);
+} else {
+  alert(" No local storage");
+}
+      }
+      function retrieve()
+      {
+      alert("Data retrieving from local ");
+            if (document.contains($("display")))
+            $("display").remove();
+            var div=document.createElement("div");
+            div.id="display";
+            var n=document.createElement("P");
+            n.innerHTML="Name: "+ loc("Name");
+            var pass=document.createElement("P");
+            pass.innerHTML="Password: "+loc("Password");
+             var e=document.createElement("P");
+            e.innerHTML="Email: "+loc("email");
+             var ph=document.createElement("P");
+            ph.innerHTML="Phone: "+loc("phone");
+             var cit=document.createElement("P");
+            cit.innerHTML="City: "+loc("city");
+            div.appendChild(n);
+            div.appendChild(pass);
+            div.appendChild(e);
+            div.appendChild(ph);
+            div.appendChild(cit);
+            document.body.appendChild(div);
+      }
+    </script>
+</head>
+<body>
+  <h1> Form</h1><hr/>
+  <div>
+      <p>Enter Name    : <input type="text" id="name"></p>
+      <p>Enter Password: <input type="password" id="password"></p>
+      <p>Enter Email id: <input type="email" id="mail"></p>
+      <p>Enter Phone No: <input type="string" id="phone"></p>
+      <p>
+        select the State<br/>
+        <select id="State">
+            <option>KAR</option>
+            <option>TN</option>
+            <option>ANDRA</option>
+        </select>
+      </p>
+      <p>Enter City    : <input type="text" id="city"></p>
+      <p>Data:<input type="date" id="dob"></p>
+      
+        <p><input type="radio" name="bill">Home<input type="radio" name="bill">office</p> 
+      <p><button onclick="add()">Submit</button> <button onclick="clear()">Clear</button></p>
+      <p><button onclick="retrieve()">retrieve Data</button> </p>
+  </div>  
+</body>
+</html>
